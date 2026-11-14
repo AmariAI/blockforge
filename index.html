@@ -7,6 +7,7 @@
   <title>BlockForge — Creative coding studio</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="studio-theme.css" />
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -41,6 +42,6 @@
   <dialog id="accountDialog" class="modal"><form id="accountForm"><button class="dialog-close" type="button" data-close="accountDialog" aria-label="Close">×</button><p class="kicker">Local demo profile</p><h2>Switch account</h2><p class="modal-copy">This is a demo profile, not verified sign-in. Admin tools are available to the demo owner account.</p><label for="accountUsername">Username</label><input id="accountUsername" autocomplete="username" required minlength="2" maxlength="24" pattern="[A-Za-z0-9_-]+" /><div class="modal-actions"><button class="button secondary" type="button" data-close="accountDialog">Cancel</button><button class="button primary" type="submit">Continue</button></div></form></dialog>
   <dialog id="inboxDialog" class="modal"><form method="dialog"><button class="dialog-close" type="button" data-close="inboxDialog" aria-label="Close">×</button><p class="kicker">Your invitations</p><h2>Collaboration inbox</h2><div id="inboxList" class="inbox-list"></div><button class="button secondary close-inbox" value="close">Done</button></form></dialog>
   <dialog id="adminDialog" class="modal admin-dialog"><form method="dialog"><button class="dialog-close" type="button" data-close="adminDialog" aria-label="Close">×</button><p class="kicker">Admin moderation</p><h2>Feature content</h2><p class="modal-copy">Choose which project and studio appear in the community spotlight. Changes are saved for this browser.</p><div id="adminFeatureControls" class="admin-feature-controls"></div><button class="button secondary close-inbox" value="close">Done</button></form></dialog>
-  <footer><span>© BlockForge</span><a href="https://github.com/AmariAI/blockforge">Source on GitHub</a></footer>
+  <footer><span>© BlockForge</span><a href="https://github.com/AmariAI/blockforge">Source on GitHub</a><a href="community-guidelines.html">Community guidelines</a></footer>
 </body>
 </html>
