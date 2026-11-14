@@ -6,54 +6,41 @@
   <meta name="description" content="BlockForge is a playful creative coding studio." />
   <title>BlockForge — Creative coding studio</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="admin.css" />
   <script src="script.js" defer></script>
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="#home"><span class="brand-mark">B</span>BlockForge</a>
-    <nav aria-label="Main navigation"><a href="#studio">Studio</a><a href="#about">About</a></nav>
+    <nav aria-label="Main navigation"><a href="#studio">Studio</a><a href="#discover">Discover</a><a href="#about">About</a></nav>
     <div class="top-actions">
       <button class="button secondary" id="accountButton" type="button">Account: AmariAI</button>
+      <button class="button secondary admin-only" id="adminButton" type="button" hidden>Admin tools</button>
       <div class="share-menu" id="shareMenu">
         <button class="button secondary" id="shareButton" type="button" aria-haspopup="true" aria-expanded="false">Share ▾</button>
-        <div class="share-popover" id="sharePopover">
-          <p>Moon Hopper</p>
-          <button type="button" id="collaborateButton">♧ Collaborate</button>
-        </div>
+        <div class="share-popover" id="sharePopover"><p>Moon Hopper</p><button type="button" id="collaborateButton">♧ Collaborate</button></div>
       </div>
     </div>
   </header>
-
   <main id="home">
-    <section class="hero">
-      <div><p class="kicker">A creative coding playground</p><h1>Dream it.<br /><span>Build it in blocks.</span></h1><p class="lead">Make little games, animations, and interactive stories in your own bright, block-powered studio.</p><a class="button primary" href="#studio">Open the studio <span aria-hidden="true">↘</span></a></div>
-      <div class="hero-art" aria-label="A colorful character on a sunny stage"><div class="sun"></div><div class="hill"></div><div class="character"><i></i><i></i><b></b></div><span class="spark spark-one">✦</span><span class="spark spark-two">✧</span></div>
-    </section>
-
+    <section class="hero"><div><p class="kicker">A creative coding playground</p><h1>Dream it.<br /><span>Build it in blocks.</span></h1><p class="lead">Make little games, animations, and interactive stories in your own bright, block-powered studio.</p><a class="button primary" href="#studio">Open the studio <span aria-hidden="true">↘</span></a></div><div class="hero-art" aria-label="A colorful character on a sunny stage"><div class="sun"></div><div class="hill"></div><div class="character"><i></i><i></i><b></b></div><span class="spark spark-one">✦</span><span class="spark spark-two">✧</span></div></section>
     <section class="workspace" id="studio">
       <div class="workspace-bar"><div><p class="kicker">Your workspace · <span id="accessLabel">Owner</span></p><h2>Moon Hopper</h2></div><div class="run-controls"><button class="button green" id="runButton" type="button">▶ Run</button><button class="button secondary" id="resetButton" type="button">↺ Reset</button></div></div>
       <div class="access-notice" id="accessNotice" role="status" hidden></div>
       <div class="editor">
-        <aside class="sidebar">
-          <div class="card"><div class="card-heading"><h3>Sprites</h3><button class="icon-button edit-control" id="addSprite" aria-label="Add sprite" type="button">＋</button></div><div id="sprites" class="sprite-list"></div></div>
-          <div class="card"><div class="card-heading"><h3>Costumes</h3><button class="icon-button edit-control" id="addCostume" aria-label="Add costume" type="button">＋</button></div><div id="costumes" class="costume-list"></div></div>
-        </aside>
-        <section class="code-area" aria-label="Code and stage">
-          <div class="stage-card"><div class="card-heading"><h3>Stage</h3><span class="stage-size">480 × 360</span></div><div id="stage" class="stage"><div class="stage-sun"></div><div class="stage-ground"></div><div id="actor" class="actor" aria-label="Selected sprite"><i></i><i></i></div></div></div>
-          <div class="scripts card"><div class="card-heading"><h3>My code</h3><button class="text-button edit-control" id="clearButton" type="button">Clear</button></div><div id="script" class="script-list"></div><p id="emptyHint" class="hint">Choose a block to start building your script.</p></div>
-        </section>
+        <aside class="sidebar"><div class="card"><div class="card-heading"><h3>Sprites</h3><button class="icon-button edit-control" id="addSprite" aria-label="Add sprite" type="button">＋</button></div><div id="sprites" class="sprite-list"></div></div><div class="card"><div class="card-heading"><h3>Costumes</h3><button class="icon-button edit-control" id="addCostume" aria-label="Add costume" type="button">＋</button></div><div id="costumes" class="costume-list"></div></div></aside>
+        <section class="code-area" aria-label="Code and stage"><div class="stage-card"><div class="card-heading"><h3>Stage</h3><span class="stage-size">480 × 360</span></div><div id="stage" class="stage"><div class="stage-sun"></div><div class="stage-ground"></div><div id="actor" class="actor" aria-label="Selected sprite"><i></i><i></i></div></div></div><div class="scripts card"><div class="card-heading"><h3>My code</h3><button class="text-button edit-control" id="clearButton" type="button">Clear</button></div><div id="script" class="script-list"></div><p id="emptyHint" class="hint">Choose a block to start building your script.</p></div></section>
         <aside class="blocks card"><h3>Blocks</h3><p class="hint">Choose a block to add it to your script.</p><div class="block-list"><button class="block motion edit-control" data-block="move" type="button">⇢ Move 10 steps</button><button class="block motion edit-control" data-block="turn" type="button">↻ Turn 15°</button><button class="block looks edit-control" data-block="say" type="button">“ Say hello!</button><button class="block looks edit-control" data-block="costume" type="button">▧ Next costume</button><button class="block event edit-control" data-block="start" type="button">⚑ When run clicked</button><button class="block sound edit-control" data-block="sound" type="button">♪ Play a sound</button></div><div class="card subcard"><h3>Sprite info</h3><p id="spriteInfo" class="hint"></p></div></aside>
       </div>
       <section class="collab-panel card" aria-labelledby="collabHeading"><div class="card-heading"><div><p class="kicker">Project access</p><h3 id="collabHeading">Collaborators & invitations</h3></div><span class="demo-tag">Same-browser demo</span></div><p class="hint">Invites stay pending until accepted. Switch the demo account above to test the recipient flow.</p><div id="collabList" class="collab-list"></div></section>
     </section>
+    <section class="discover" id="discover"><div class="discover-heading"><p class="kicker">Community spotlight</p><h2>Featured on BlockForge</h2><p>Projects and studios selected by the BlockForge team.</p></div><div class="showcase-grid"><section class="showcase-card"><h3>Featured projects</h3><div id="featuredProjects" class="showcase-list"></div></section><section class="showcase-card"><h3>Featured studios</h3><div id="featuredStudios" class="showcase-list"></div></section></div></section>
     <section class="about" id="about"><p class="kicker">Make something yours</p><h2>Start small. Make something surprising.</h2><p>BlockForge is an independent creative coding project with its own name, art direction, and playful tools.</p></section>
   </main>
-
   <dialog id="inviteDialog" class="modal"><form id="inviteForm"><button class="dialog-close" type="button" data-close="inviteDialog" aria-label="Close">×</button><p class="kicker">Project collaboration</p><h2>Invite a creator</h2><p class="modal-copy">They will only be able to edit after accepting the invitation.</p><label for="inviteUsername">BlockForge username</label><input id="inviteUsername" name="username" autocomplete="off" required minlength="2" maxlength="24" pattern="[A-Za-z0-9_-]+" placeholder="e.g. NovaBuilder" /><p class="form-hint">Use letters, numbers, underscores, or hyphens.</p><p id="inviteFeedback" class="form-feedback" role="status"></p><div class="modal-actions"><button class="button secondary" type="button" data-close="inviteDialog">Cancel</button><button class="button primary" type="submit">Send invite</button></div></form></dialog>
-
-  <dialog id="accountDialog" class="modal"><form id="accountForm"><button class="dialog-close" type="button" data-close="accountDialog" aria-label="Close">×</button><p class="kicker">Local demo profile</p><h2>Switch account</h2><p class="modal-copy">Enter the invited username to see and accept their pending invitation. This demo profile is not a verified login.</p><label for="accountUsername">Username</label><input id="accountUsername" autocomplete="username" required minlength="2" maxlength="24" pattern="[A-Za-z0-9_-]+" /><div class="modal-actions"><button class="button secondary" type="button" data-close="accountDialog">Cancel</button><button class="button primary" type="submit">Continue</button></div></form></dialog>
-
+  <dialog id="accountDialog" class="modal"><form id="accountForm"><button class="dialog-close" type="button" data-close="accountDialog" aria-label="Close">×</button><p class="kicker">Local demo profile</p><h2>Switch account</h2><p class="modal-copy">This is a demo profile, not verified sign-in. Admin tools are available to the demo owner account.</p><label for="accountUsername">Username</label><input id="accountUsername" autocomplete="username" required minlength="2" maxlength="24" pattern="[A-Za-z0-9_-]+" /><div class="modal-actions"><button class="button secondary" type="button" data-close="accountDialog">Cancel</button><button class="button primary" type="submit">Continue</button></div></form></dialog>
   <dialog id="inboxDialog" class="modal"><form method="dialog"><button class="dialog-close" type="button" data-close="inboxDialog" aria-label="Close">×</button><p class="kicker">Your invitations</p><h2>Collaboration inbox</h2><div id="inboxList" class="inbox-list"></div><button class="button secondary close-inbox" value="close">Done</button></form></dialog>
+  <dialog id="adminDialog" class="modal admin-dialog"><form method="dialog"><button class="dialog-close" type="button" data-close="adminDialog" aria-label="Close">×</button><p class="kicker">Admin moderation</p><h2>Feature content</h2><p class="modal-copy">Choose which project and studio appear in the community spotlight. Changes are saved for this browser.</p><div id="adminFeatureControls" class="admin-feature-controls"></div><button class="button secondary close-inbox" value="close">Done</button></form></dialog>
   <footer><span>© BlockForge</span><a href="https://github.com/AmariAI/blockforge">Source on GitHub</a></footer>
 </body>
 </html>
