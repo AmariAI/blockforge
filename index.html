@@ -9,15 +9,22 @@
   <link rel="stylesheet" href="admin.css" />
   <link rel="stylesheet" href="studio-theme.css" />
   <link rel="stylesheet" href="studio-extras.css" />
+  <link rel="stylesheet" href="navigation.css" />
   <script src="script.js" defer></script>
   <script src="studio-extras.js" defer></script>
+  <script src="navigation.js" defer></script>
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="#home"><span class="brand-mark">B</span>BlockForge</a>
-    <nav aria-label="Main navigation"><a href="#studio">Studio</a><a href="#discover">Discover</a><a href="#about">About</a></nav>
+    <nav class="main-navigation" aria-label="Main navigation">
+      <a href="#discover">Explore</a>
+      <button id="searchButton" type="button">⌕ Search</button>
+      <a class="create-link" href="#studio">＋ Create</a>
+    </nav>
     <div class="top-actions">
-      <button class="button secondary" id="accountButton" type="button">Account: AmariAI</button>
+      <button class="button secondary message-button" id="messagesButton" type="button">Messages <span id="messageCount" class="message-count" hidden>0</span></button>
+      <button class="button secondary" id="accountButton" type="button">Profile: AmariAI</button>
       <button class="button secondary admin-only" id="adminButton" type="button" hidden>Admin tools</button>
       <div class="share-menu" id="shareMenu">
         <button class="button secondary" id="shareButton" type="button" aria-haspopup="true" aria-expanded="false">Share ▾</button>
@@ -40,9 +47,10 @@
     <section class="discover" id="discover"><div class="discover-heading"><p class="kicker">Community spotlight</p><h2>Featured on BlockForge</h2><p>Projects and studios selected by the BlockForge team.</p></div><div class="showcase-grid"><section class="showcase-card"><h3>Featured projects</h3><div id="featuredProjects" class="showcase-list"></div></section><section class="showcase-card"><h3>Featured studios</h3><div id="featuredStudios" class="showcase-list"></div></section></div></section>
     <section class="about" id="about"><p class="kicker">Make something yours</p><h2>Start small. Make something surprising.</h2><p>BlockForge is an independent creative coding project with its own name, art direction, and playful tools.</p></section>
   </main>
+  <dialog id="searchDialog" class="modal search-dialog"><form id="searchForm"><button class="dialog-close" type="button" data-close="searchDialog" aria-label="Close">×</button><p class="kicker">Explore BlockForge</p><h2>Search projects & studios</h2><label for="siteSearch">Search</label><input id="siteSearch" type="search" placeholder="Try a project or creator name" autocomplete="off" /><div id="searchResults" class="search-results" aria-live="polite"></div><button class="button secondary close-inbox" type="button" data-close="searchDialog">Done</button></form></dialog>
   <dialog id="inviteDialog" class="modal"><form id="inviteForm"><button class="dialog-close" type="button" data-close="inviteDialog" aria-label="Close">×</button><p class="kicker">Project collaboration</p><h2>Invite a creator</h2><p class="modal-copy">They will only be able to edit after accepting the invitation.</p><label for="inviteUsername">BlockForge username</label><input id="inviteUsername" name="username" autocomplete="off" required minlength="2" maxlength="24" pattern="[A-Za-z0-9_-]+" placeholder="e.g. NovaBuilder" /><p class="form-hint">Use letters, numbers, underscores, or hyphens.</p><p id="inviteFeedback" class="form-feedback" role="status"></p><div class="modal-actions"><button class="button secondary" type="button" data-close="inviteDialog">Cancel</button><button class="button primary" type="submit">Send invite</button></div></form></dialog>
-  <dialog id="accountDialog" class="modal"><form id="accountForm"><button class="dialog-close" type="button" data-close="accountDialog" aria-label="Close">×</button><p class="kicker">Local demo profile</p><h2>Switch account</h2><p class="modal-copy">This is a demo profile, not verified sign-in. Admin tools are available to the demo owner account.</p><label for="accountUsername">Username</label><input id="accountUsername" autocomplete="username" required minlength="2" maxlength="24" pattern="[A-Za-z0-9_-]+" /><div class="modal-actions"><button class="button secondary" type="button" data-close="accountDialog">Cancel</button><button class="button primary" type="submit">Continue</button></div></form></dialog>
-  <dialog id="inboxDialog" class="modal"><form method="dialog"><button class="dialog-close" type="button" data-close="inboxDialog" aria-label="Close">×</button><p class="kicker">Your invitations</p><h2>Collaboration inbox</h2><div id="inboxList" class="inbox-list"></div><button class="button secondary close-inbox" value="close">Done</button></form></dialog>
+  <dialog id="accountDialog" class="modal"><form id="accountForm"><button class="dialog-close" type="button" data-close="accountDialog" aria-label="Close">×</button><p class="kicker">Local demo profile</p><h2>Your profile</h2><p class="modal-copy">This is a demo profile, not verified sign-in. Change the local demo username below.</p><label for="accountUsername">Username</label><input id="accountUsername" autocomplete="username" required minlength="2" maxlength="24" pattern="[A-Za-z0-9_-]+" /><div class="modal-actions"><button class="button secondary" type="button" data-close="accountDialog">Cancel</button><button class="button primary" type="submit">Save profile</button></div></form></dialog>
+  <dialog id="inboxDialog" class="modal"><form method="dialog"><button class="dialog-close" type="button" data-close="inboxDialog" aria-label="Close">×</button><p class="kicker">Messages</p><h2>Notifications & invitations</h2><div id="inboxList" class="inbox-list"></div><button class="button secondary close-inbox" value="close">Done</button></form></dialog>
   <dialog id="adminDialog" class="modal admin-dialog"><form method="dialog"><button class="dialog-close" type="button" data-close="adminDialog" aria-label="Close">×</button><p class="kicker">Admin moderation</p><h2>Feature content</h2><p class="modal-copy">Choose which project and studio appear in the community spotlight. Changes are saved for this browser.</p><div id="adminFeatureControls" class="admin-feature-controls"></div><button class="button secondary close-inbox" value="close">Done</button></form></dialog>
   <footer><span>© BlockForge</span><a href="https://github.com/AmariAI/blockforge">Source on GitHub</a><a href="community-guidelines.html">Community guidelines</a></footer>
 </body>
