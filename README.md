@@ -1,16 +1,19 @@
 # BlockForge
 
-BlockForge is a static creative-coding demo with a stage, sample block palette, local collaboration invitation prototype, and local admin featuring controls.
+BlockForge is an original creative-coding playground. The studio now includes extra block-editor features such as category tabs, more blocks, selectable stage backdrops, keyboard and pointer sprite controls, a score variable, sound toggle, and project JSON import/export. Existing collaboration, admin featuring, and community spotlight demos remain included.
 
-## Admin featuring demo
+## Extra editor features
 
-The **AmariAI** demo profile sees **Admin tools** in the top navigation. Open it to feature/unfeature the example **Moon Hopper** project and the **AmariAI** studio. Featured items appear in the Community spotlight below the editor and remain saved in that browser's local storage.
+- Use the block category tabs to browse Motion, Looks, Sound, Events, Control, Sensing, and Variables blocks.
+- Click blocks to add them to the script; use × to remove a block.
+- Choose Meadow, Ocean, or Space for the stage backdrop.
+- Drag the sprite or use arrow keys to move it. Press Space to run the script.
+- Try hide/show, grow, wait, repeat, edge bounce, score, and sound blocks.
+- Use Export/Import to save or load a project JSON file.
 
-**Important limitation:** this is a UI prototype, not secure administration or a shared community catalog. The profile switcher is not verified authentication, browser storage is editable by visitors and does not sync across users, and the admin role is hard-coded for this demo. For production, authenticate users server-side, assign admin roles in a trusted database, enforce role checks on every feature/unfeature API request, and store featured content in a shared database. Never trust a client-side role check to authorize real admin actions.
+## Important prototype limitations
 
-## Collaboration demo
-
-Use **Share → Collaborate** to invite a username. The invite is stored as pending and does not grant edit access. Use **Account** to switch the local demo profile to the invited username; that recipient can accept or decline in the inbox. Acceptance unlocks editing for that profile. This is same-browser only and is not secure multi-user collaboration; see the limitation above.
+This app is a static browser demo. Project data, collaboration invites, and featured content are stored in the browser's local storage and do not sync across users or devices. The account switcher and admin permission checks are not secure authentication/authorization. Real collaboration and admin tools need a trusted backend, authenticated accounts, and server-side authorization.
 
 ## Public site
 
@@ -19,3 +22,5 @@ Expected GitHub Pages URL: <https://amariai.github.io/blockforge/> after Pages i
 ## Run locally
 
 Open `index.html`, or run `python -m http.server 3000` and visit `http://localhost:3000`.
+
+Community guidelines: [community-guidelines.html](community-guidelines.html)
