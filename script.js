@@ -1,654 +1,121 @@
-* {
-  box-sizing: border-box;
-}
-
-:root {
-  --bg: #e7edf4;
-  --bg-strong: #dfe8f4;
-  --panel: #f7f7f7;
-  --panel-alt: #f2f4fa;
-  --panel-deep: #edf3ff;
-  --ink: #1f2a37;
-  --muted: #58657a;
-  --line: rgba(29, 42, 56, 0.12);
-  --shadow: 0 16px 36px rgba(43, 52, 70, 0.12);
-  --motion: #4c97ff;
-  --looks: #9966ff;
-  --sound: #cf63cf;
-  --event: #ffd54f;
-  --control: #ffab19;
-  --operator: #59c059;
-  --sensing: #5cb1d6;
-  --primary: #67d0ff;
-  --primary-2: #7a6aff;
-  --good: #7ad6a0;
-  --danger: #ff7e7e;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: "Inter", sans-serif;
-  background:
-    radial-gradient(circle at top left, rgba(108, 141, 255, 0.12), transparent 24%),
-    linear-gradient(180deg, #edf3f8, #e9eef6 24%, #eff3f8 100%);
-  color: var(--ink);
-}
-
-button {
-  font: inherit;
-}
-
-.page-shell {
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 20px 18px 40px;
-}
-
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 16px 18px;
-  border: 1px solid rgba(27, 36, 51, 0.08);
-  border-radius: 20px;
-  background: rgba(255,255,255,0.85);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(16px);
-  position: sticky;
-  top: 10px;
-  z-index: 30;
-}
-
-.brand-wrap {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 170px;
-}
-
-.brand-mark {
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, #4cc9ff, #7d6bff);
-  color: white;
-  font-weight: 800;
-  font-size: 1.3rem;
-  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.3);
-}
-
-.brand-copy h1 {
-  font-size: 1.35rem;
-  letter-spacing: -0.04em;
-  margin: 0;
-}
-
-.eyebrow {
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin: 0 0 5px;
-  color: #5a6f89;
-}
-
-.topnav {
-  display: flex;
-  gap: 8px;
-  padding: 6px;
-  border-radius: 14px;
-  background: rgba(17, 23, 38, 0.04);
-}
-
-.nav-chip {
-  border: 0;
-  background: transparent;
-  color: var(--muted);
-  padding: 10px 12px;
-  border-radius: 10px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.nav-chip.active {
-  background: white;
-  color: var(--ink);
-  box-shadow: 0 4px 14px rgba(38, 50, 68, 0.08);
-}
-
-.top-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.primary-btn, .ghost-btn, .small-btn, .tiny-btn, .block-btn {
-  border: 0;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: transform 0.16s ease, box-shadow 0.16s ease;
-}
-
-.primary-btn:hover, .ghost-btn:hover, .small-btn:hover, .tiny-btn:hover, .block-btn:hover {
-  transform: translateY(-1px);
-}
-
-.primary-btn {
-  padding: 11px 18px;
-  font-weight: 800;
-  color: #0d1b26;
-  background: linear-gradient(135deg, #6be1ff, #7a6cff);
-  box-shadow: 0 10px 24px rgba(122, 106, 255, 0.2);
-}
-
-.ghost-btn, .small-btn, .tiny-btn {
-  background: rgba(17, 24, 39, 0.04);
-  color: var(--ink);
-  border: 1px solid rgba(17, 24, 39, 0.08);
-}
-
-.ghost-btn {
-  padding: 10px 16px;
-  font-weight: 700;
-}
-
-.hero {
-  display: grid;
-  grid-template-columns: 1.12fr 0.88fr;
-  gap: 24px;
-  padding: 36px 0 22px;
-  align-items: center;
-}
-
-.hero-copy {
-  padding: 20px 0;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 12px;
-  background: rgba(76, 151, 255, 0.1);
-  border: 1px solid rgba(76, 151, 255, 0.18);
-  color: #2d67c7;
-  border-radius: 999px;
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.hero-copy h2 {
-  margin-top: 18px;
-  font-size: clamp(2.8rem, 5vw, 5rem);
-  line-height: 0.96;
-  letter-spacing: -0.07em;
-  max-width: 620px;
-}
-
-.hero-copy p {
-  margin-top: 18px;
-  color: var(--muted);
-  line-height: 1.7;
-  max-width: 620px;
-  font-size: 1.02rem;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 14px;
-  margin-top: 26px;
-}
-
-.hero-metrics {
-  display: flex;
-  gap: 22px;
-  flex-wrap: wrap;
-  list-style: none;
-  padding: 0;
-  margin: 30px 0 0;
-}
-
-.hero-metrics li {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.hero-metrics strong {
-  font-size: 1.8rem;
-  letter-spacing: -0.05em;
-}
-
-.hero-metrics span {
-  color: var(--muted);
-  font-size: 0.8rem;
-}
-
-.hero-card {
-  background: rgba(255,255,255,0.72);
-  border: 1px solid rgba(82, 100, 123, 0.1);
-  border-radius: 30px;
-  padding: 22px;
-  box-shadow: var(--shadow);
-}
-
-.mini-stage {
-  position: relative;
-  overflow: hidden;
-  min-height: 320px;
-  border-radius: 24px;
-  background: linear-gradient(180deg, #8ad0ff, #dfeffa 42%, #d8f4db 100%);
-  border: 1px solid rgba(27, 36, 51, 0.09);
-}
-
-.sun {
-  position: absolute;
-  right: 38px;
-  top: 26px;
-  width: 92px;
-  height: 92px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #fff0ad, #ffc857 55%, #f39d2e 100%);
-  box-shadow: 0 0 46px rgba(255, 200, 87, 0.75);
-}
-
-.cloud {
-  position: absolute;
-  height: 42px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.7);
-}
-
-.cloud-one { width: 130px; left: 38px; top: 60px; }
-.cloud-two { width: 160px; left: 150px; top: 112px; }
-
-.sprite-glow {
-  position: absolute;
-  left: 50%;
-  top: 62%;
-  width: 84px;
-  height: 84px;
-  transform: translate(-50%, -50%);
-  border-radius: 18px;
-  background: linear-gradient(135deg, #6e8ef6, #7de0ff);
-  box-shadow: 0 16px 34px rgba(90, 115, 255, 0.28);
-}
-
-.sprite-glow::before,
-.sprite-glow::after {
-  content: "";
-  position: absolute;
-  top: 20px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.8);
-}
-
-.sprite-glow::before { left: 18px; }
-.sprite-glow::after { right: 18px; }
-
-.mini-toolbar {
-  display: flex;
-  gap: 10px;
-  margin-top: 18px;
-}
-
-.toolbar-pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-weight: 800;
-  font-size: 0.8rem;
-  letter-spacing: 0.02em;
-}
-
-.toolbar-pill.motion { background: rgba(76,151,255,0.12); color: #2567d5; }
-.toolbar-pill.looks { background: rgba(153,102,255,0.12); color: #5b4bd8; }
-.toolbar-pill.sound { background: rgba(207,99,207,0.12); color: #8d4895; }
-
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 22px;
-}
-
-.feature-card {
-  padding: 22px 20px 18px;
-  background: rgba(255,255,255,0.7);
-  border: 1px solid rgba(30, 42, 56, 0.08);
-  border-radius: 22px;
-  box-shadow: 0 10px 22px rgba(24, 33, 44, 0.05);
-}
-
-.icon {
-  width: 54px;
-  height: 54px;
-  border-radius: 16px;
-  display: grid;
-  place-items: center;
-  font-size: 1.6rem;
-  font-weight: 800;
-  margin-bottom: 16px;
-}
-
-.icon.purple { background: rgba(153,102,255,0.14); color: #6d4fe0; }
-.icon.blue { background: rgba(76,151,255,0.14); color: #2969d1; }
-.icon.orange { background: rgba(255,171,25,0.14); color: #c57b06; }
-
-.feature-card h3 {
-  margin-bottom: 8px;
-  font-size: 1.25rem;
-}
-
-.feature-card p {
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.studio {
-  margin-top: 60px;
-}
-
-.studio-header {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 18px;
-}
-
-.studio-header h3 {
-  font-size: clamp(2.1rem, 3vw, 3rem);
-  letter-spacing: -0.06em;
-}
-
-.project-controls {
-  display: flex;
-  gap: 10px;
-}
-
-.small-btn {
-  padding: 10px 14px;
-  font-weight: 800;
-}
-
-.studio-layout {
-  display: grid;
-  grid-template-columns: 265px minmax(0,1fr) 290px;
-  gap: 18px;
-}
-
-.panel {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.panel-block {
-  background: rgba(255,255,255,0.7);
-  border: 1px solid rgba(17, 24, 39, 0.08);
-  border-radius: 20px;
-  padding: 16px;
-  box-shadow: 0 8px 18px rgba(33, 44, 59, 0.04);
-}
-
-.panel-title-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-
-.panel-block h4 {
-  margin: 0;
-  font-size: 1rem;
-}
-
-.tiny-counter {
-  min-width: 26px;
-  height: 26px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  background: rgba(76, 151, 255, 0.08);
-  color: #2a67ca;
-  font-size: 0.72rem;
-  font-weight: 800;
-}
-
-.sprite-list, .costume-list, .script-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.sprite-item, .costume-item, .script-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(17, 24, 39, 0.08);
-  background: rgba(17, 24, 39, 0.02);
-  color: var(--ink);
-}
-
-.sprite-item.active, .costume-item.active {
-  border-color: rgba(76, 151, 255, 0.42);
-  background: rgba(76, 151, 255, 0.07);
-}
-
-.sprite-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.sprite-thumb {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  display: inline-block;
-  background: linear-gradient(135deg, #4c97ff, #7a6cff);
-}
-
-.costume-swatch {
-  width: 22px;
-  height: 22px;
-  border-radius: 6px;
-  display: inline-block;
-  border: 1px solid rgba(17, 24, 39, 0.15);
-}
-
-.tiny-btn {
-  width: 100%;
-  margin-top: 12px;
-  padding: 10px 12px;
-  font-weight: 800;
-}
-
-.center-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.stage-wrap {
-  background: rgba(255,255,255,0.7);
-  border: 1px solid rgba(17, 24, 39, 0.08);
-  border-radius: 22px;
-  padding: 16px;
-  box-shadow: 0 8px 18px rgba(33, 44, 59, 0.04);
-}
-
-.stage-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
-  color: var(--muted);
-  font-weight: 700;
-}
-
-.stage {
-  position: relative;
-  width: 100%;
-  height: 440px;
-  background: linear-gradient(180deg, #8cd9ff 0%, #dff5ff 39%, #c9f2d2 100%);
-  border: 1px solid rgba(27, 36, 51, 0.08);
-  border-radius: 18px;
-  overflow: hidden;
-}
-
-.stage-sky {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0));
-}
-
-.sprite-layer {
-  position: absolute;
-  inset: 0;
-}
-
-.stage-sprite {
-  position: absolute;
-  width: 72px;
-  height: 72px;
-  border-radius: 18px;
-  box-shadow: 0 14px 28px rgba(47,57,79,0.18);
-  transform: translate(-50%, -50%);
-  transition: left 0.35s ease, top 0.35s ease, transform 0.3s ease;
-}
-
-.stage-sprite::before,
-.stage-sprite::after {
-  content: "";
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.8);
-  top: 20px;
-}
-
-.stage-sprite::before { left: 15px; }
-.stage-sprite::after { right: 15px; }
-
-.script-panel {
-  background: rgba(255,255,255,0.7);
-  border: 1px solid rgba(17, 24, 39, 0.08);
-  border-radius: 20px;
-  padding: 16px;
-  box-shadow: 0 8px 18px rgba(33, 44, 59, 0.04);
-}
-
-.script-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.script-header h4 {
-  margin: 0;
-  font-size: 1rem;
-}
-
-.script-item {
-  min-height: 56px;
-  background: rgba(17, 24, 39, 0.02);
-}
-
-.script-tag {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 8px 10px;
-  border-radius: 999px;
-}
-
-.script-tag.motion { background: rgba(76,151,255,0.12); color: #2d68d1; }
-.script-tag.looks { background: rgba(153,102,255,0.12); color: #5e45d5; }
-.script-tag.event { background: rgba(255,213,79,0.18); color: #b7830a; }
-.script-tag.sound { background: rgba(207,99,207,0.12); color: #8c4e9e; }
-
-.palette-block .block-palette {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.block-btn {
-  text-align: left;
-  padding: 12px 14px;
-  font-weight: 800;
-  color: #17212f;
-  border: 1px solid rgba(23, 33, 47, 0.08);
-  border-radius: 12px;
-}
-
-.block-btn.motion { background: #a7d5ff; }
-.block-btn.looks { background: #c2b4ff; }
-.block-btn.event { background: #f9da70; }
-.block-btn.sound { background: #f0b8f0; }
-
-.inspector {
-  min-height: 170px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-radius: 12px;
-  border: 1px dashed rgba(17,24,39,0.12);
-  background: rgba(17,24,39,0.02);
-  color: var(--muted);
-  padding: 18px;
-}
-
-@media (max-width: 1150px) {
-  .studio-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .hero {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 720px) {
-  .feature-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .topnav {
-    display: none;
-  }
-
-  .page-shell {
-    padding: 16px;
-  }
-
-  .hero-copy h2 {
-    font-size: 2.7rem;
-  }
-}
+const STORAGE_KEY = "blockforge:moon-hopper:v1";
+const OWNER = "AmariAI";
+const initialProject = {
+  project: { title: "Moon Hopper", owner: OWNER, x: 50, y: 50, costume: 0, script: ["start", "move", "say", "costume"] },
+  invitations: []
+};
+const blockLabels = {
+  move: ["motion", "⇢ Move 10 steps"], turn: ["motion", "↻ Turn 15°"],
+  say: ["looks", "“ Say hello!"], costume: ["looks", "▧ Next costume"],
+  start: ["event", "⚑ When run clicked"], sound: ["sound", "♪ Play a sound"]
+};
+const $ = (id) => document.getElementById(id);
+let data = loadData();
+let currentUser = sessionStorage.getItem("blockforge:demo-user") || OWNER;
+let runTimer;
+function loadData() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (saved && saved.project && Array.isArray(saved.invitations)) return saved;
+  } catch (error) { console.warn("Could not load saved demo project", error); }
+  return structuredClone(initialProject);
+}
+function saveData() { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+function isOwner() { return currentUser.toLowerCase() === data.project.owner.toLowerCase(); }
+function acceptedInvite() { return data.invitations.some((invite) => invite.username.toLowerCase() === currentUser.toLowerCase() && invite.status === "accepted"); }
+function canEdit() { return isOwner() || acceptedInvite(); }
+function render() {
+  const project = data.project;
+  $("accountButton").textContent = `Account: ${currentUser}`;
+  $("accessLabel").textContent = isOwner() ? "Owner" : acceptedInvite() ? "Collaborator" : "View only";
+  $("accessNotice").hidden = canEdit();
+  if (!canEdit()) $("accessNotice").textContent = `You are viewing as ${currentUser}. You can run the project, but editing is locked until the owner approves your collaboration invite.`;
+  document.querySelectorAll(".edit-control").forEach((el) => { el.disabled = !canEdit(); el.title = canEdit() ? "" : "Accept the collaboration invite to edit"; });
+  $("sprites").innerHTML = `<button class="sprite-item active" type="button"><span class="swatch"></span>Nova</button>`;
+  const names = ["Original", "Sunset", "Mint"];
+  $("costumes").innerHTML = names.map((name, i) => `<button class="costume-item ${i === project.costume ? "active" : ""}" data-costume="${i}" type="button" ${canEdit() ? "" : "disabled"}><span class="swatch"></span>${name}</button>`).join("");
+  $("script").innerHTML = project.script.map((key) => {
+    const [type, label] = blockLabels[key];
+    return `<div class="script-item ${type}">${label}</div>`;
+  }).join("");
+  $("emptyHint").hidden = project.script.length > 0;
+  $("spriteInfo").textContent = `Nova · x ${Math.round(project.x)} · y ${Math.round(project.y)} · costume ${project.costume + 1}`;
+  $("actor").style.left = `${project.x}%`;
+  $("actor").style.top = `${project.y}%`;
+  $("actor").style.background = ["linear-gradient(145deg,#8c68f5,#50c9e8)", "linear-gradient(145deg,#ff9c6c,#ffcf67)", "linear-gradient(145deg,#68d69a,#4ac9d3)"][project.costume];
+  renderCollaboration();
+}
+function renderCollaboration() {
+  const rows = data.invitations;
+  const owned = rows.filter((invite) => invite.owner.toLowerCase() === currentUser.toLowerCase());
+  const incoming = rows.filter((invite) => invite.username.toLowerCase() === currentUser.toLowerCase());
+  const visible = [...owned, ...incoming.filter((invite) => !owned.includes(invite))];
+  $("collabList").innerHTML = visible.length ? visible.map((invite) => {
+    const sent = invite.owner.toLowerCase() === currentUser.toLowerCase();
+    const label = sent ? `${escapeHtml(invite.username)} · invited by you` : `${escapeHtml(invite.owner)} invited you`;
+    return `<div class="collab-row"><span>${label}</span><span class="status ${invite.status}">${invite.status === "accepted" ? "Accepted · can edit" : invite.status}</span>${!sent && invite.status === "pending" ? `<span class="row-actions"><button class="accept" data-action="accept" data-id="${invite.id}" type="button">Accept</button><button data-action="decline" data-id="${invite.id}" type="button">Decline</button></span>` : ""}</div>`;
+  }).join("") : `<p class="empty-state">No collaboration invites yet.</p>`;
+}
+function escapeHtml(text) { const element = document.createElement("span"); element.textContent = text; return element.innerHTML; }
+function sendInvite(username) {
+  const clean = username.trim().replace(/^@/, "");
+  if (!/^[A-Za-z0-9_-]{2,24}$/.test(clean)) return "Enter a valid username (2–24 letters, numbers, _ or -).";
+  if (clean.toLowerCase() === currentUser.toLowerCase()) return "You cannot invite your own account.";
+  const existing = data.invitations.find((invite) => invite.owner.toLowerCase() === currentUser.toLowerCase() && invite.username.toLowerCase() === clean.toLowerCase() && invite.status !== "declined");
+  if (existing) return `There is already a ${existing.status} invitation for ${clean}.`;
+  data.invitations.push({ id: crypto.randomUUID(), owner: currentUser, username: clean, status: "pending", createdAt: new Date().toISOString() });
+  saveData(); render(); return `Invite sent to ${clean}. It stays pending until they accept.`;
+}
+function switchAccount(username) {
+  currentUser = username.trim();
+  sessionStorage.setItem("blockforge:demo-user", currentUser);
+  $("accountDialog").close();
+  render();
+  const hasPending = data.invitations.some((invite) => invite.username.toLowerCase() === currentUser.toLowerCase() && invite.status === "pending");
+  if (hasPending) openInbox();
+}
+function openInbox() {
+  const invites = data.invitations.filter((invite) => invite.username.toLowerCase() === currentUser.toLowerCase() && invite.status === "pending");
+  $("inboxList").innerHTML = invites.length ? invites.map((invite) => `<div class="invite-row"><span><strong>${escapeHtml(invite.owner)}</strong> invited you to collaborate on <strong>${escapeHtml(data.project.title)}</strong>.</span><span class="row-actions"><button class="accept" data-action="accept" data-id="${invite.id}" type="button">Accept</button><button data-action="decline" data-id="${invite.id}" type="button">Decline</button></span></div>`).join("") : `<p class="inbox-empty">No pending invitations for ${escapeHtml(currentUser)}.</p>`;
+  $("inboxDialog").showModal();
+}
+function respondToInvite(id, response) {
+  const invite = data.invitations.find((item) => item.id === id && item.username.toLowerCase() === currentUser.toLowerCase() && item.status === "pending");
+  if (!invite) return;
+  invite.status = response === "accept" ? "accepted" : "declined";
+  invite.respondedAt = new Date().toISOString();
+  saveData(); render();
+  if ($("inboxDialog").open) openInbox();
+}
+function addBlock(key) { if (!canEdit()) return; data.project.script.push(key); saveData(); render(); }
+function runProject() {
+  clearInterval(runTimer);
+  let index = 0;
+  runTimer = setInterval(() => {
+    if (index >= data.project.script.length) { clearInterval(runTimer); return; }
+    const block = data.project.script[index++];
+    if (block === "move") data.project.x = data.project.x > 82 ? 18 : data.project.x + 12;
+    if (block === "turn") data.project.y = data.project.y > 78 ? 22 : data.project.y + 8;
+    if (block === "costume") data.project.costume = (data.project.costume + 1) % 3;
+    if (block === "say") $("actor").title = "Hello, creator!";
+    if (block === "sound") $("actor").title = "Bloop!";
+    saveData(); render();
+  }, 450);
+}
+document.querySelectorAll(".block").forEach((button) => button.addEventListener("click", () => addBlock(button.dataset.block)));
+$("costumes").addEventListener("click", (event) => { const button = event.target.closest("[data-costume]"); if (button && canEdit()) { data.project.costume = Number(button.dataset.costume); saveData(); render(); } });
+$("addSprite").addEventListener("click", () => { if (!canEdit()) return; $("sprites").insertAdjacentHTML("beforeend", `<button class="sprite-item" type="button"><span class="swatch"></span>Sprite ${Date.now().toString().slice(-3)}</button>`); });
+$("addCostume").addEventListener("click", () => { if (!canEdit()) return; data.project.costume = (data.project.costume + 1) % 3; saveData(); render(); });
+$("clearButton").addEventListener("click", () => { if (!canEdit()) return; data.project.script = []; saveData(); render(); });
+$("runButton").addEventListener("click", runProject);
+$("resetButton").addEventListener("click", () => { clearInterval(runTimer); data.project.x = 50; data.project.y = 50; data.project.costume = 0; saveData(); render(); });
+$("shareButton").addEventListener("click", () => { const menu = $("shareMenu"); menu.classList.toggle("open"); $("shareButton").setAttribute("aria-expanded", menu.classList.contains("open")); });
+$("collaborateButton").addEventListener("click", () => { $("shareMenu").classList.remove("open"); $("shareButton").setAttribute("aria-expanded", "false"); if (!isOwner()) { alert("Only the project owner can invite collaborators in this demo."); return; } $("inviteFeedback").textContent = ""; $("inviteUsername").value = ""; $("inviteDialog").showModal(); $("inviteUsername").focus(); });
+$("inviteForm").addEventListener("submit", (event) => { event.preventDefault(); const result = sendInvite($("inviteUsername").value); const success = result.startsWith("Invite sent"); $("inviteFeedback").textContent = result; $("inviteFeedback").className = `form-feedback ${success ? "success" : "error"}`; if (success) $("inviteUsername").value = ""; });
+$("accountButton").addEventListener("click", () => { $("accountUsername").value = currentUser; $("accountDialog").showModal(); $("accountUsername").focus(); });
+$("accountForm").addEventListener("submit", (event) => { event.preventDefault(); const username = $("accountUsername").value.trim(); if (!/^[A-Za-z0-9_-]{2,24}$/.test(username)) return; switchAccount(username); });
+$("collabList").addEventListener("click", (event) => { const button = event.target.closest("[data-action]"); if (button) respondToInvite(button.dataset.id, button.dataset.action); });
+$("inboxList").addEventListener("click", (event) => { const button = event.target.closest("[data-action]"); if (button) respondToInvite(button.dataset.id, button.dataset.action); });
+document.querySelectorAll("[data-close]").forEach((button) => button.addEventListener("click", () => $(button.dataset.close).close()));
+document.addEventListener("click", (event) => { if (!$("shareMenu").contains(event.target)) { $("shareMenu").classList.remove("open"); $("shareButton").setAttribute("aria-expanded", "false"); } });
+render();
