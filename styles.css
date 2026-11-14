@@ -11,41 +11,45 @@
   </head>
   <body>
     <div class="page-shell">
-      <header class="topbar">
+      <header class="topbar topbar-scratch">
         <div class="brand-wrap">
           <div class="brand-mark">B</div>
-          <div>
-            <p class="eyebrow">Creative coding studio</p>
+          <div class="brand-copy">
+            <p class="eyebrow">Creative coding</p>
             <h1>BlockForge</h1>
           </div>
         </div>
 
         <nav class="topnav">
-          <a href="#studio">Studio</a>
-          <a href="#features">Features</a>
-          <a href="#community">Community</a>
+          <button class="nav-chip active">Studio</button>
+          <button class="nav-chip">Sprites</button>
+          <button class="nav-chip">Sounds</button>
+          <button class="nav-chip">Code</button>
         </nav>
 
-        <button class="primary-btn" id="launchBuilder">Launch Builder</button>
+        <div class="top-actions">
+          <button class="ghost-btn">Share</button>
+          <button class="primary-btn" id="launchBuilder">Launch</button>
+        </div>
       </header>
 
       <main>
         <section class="hero" id="features">
           <div class="hero-copy">
-            <span class="badge">New world • Build • Play</span>
-            <h2>Turn ideas into playful worlds.</h2>
+            <span class="badge">Play • Build • Remix</span>
+            <h2>Build ideas into living worlds.</h2>
             <p>
-              Craft stories, games, animations, and interactive art with drag-and-drop blocks,
-              live sprite tools, and a costume lab built for curious creators.
+              BlockForge gives you a familiar block-based playground with a distinctive visual language,
+              a custom sprite studio, and a creator-first workflow that feels creative, not cloned.
             </p>
             <div class="hero-actions">
-              <button class="primary-btn" id="startProjectBtn">Start a project</button>
-              <button class="ghost-btn" id="viewDemoBtn">View demo</button>
+              <button class="primary-btn" id="startProjectBtn">Start creating</button>
+              <button class="ghost-btn" id="viewDemoBtn">Try demo</button>
             </div>
             <ul class="hero-metrics">
-              <li><strong>80+</strong><span>sprite styles</span></li>
-              <li><strong>3x</strong><span>faster prototyping</span></li>
-              <li><strong>∞</strong><span>creative loops</span></li>
+              <li><strong>150+</strong><span>blocks</span></li>
+              <li><strong>6</strong><span>creative kits</span></li>
+              <li><strong>∞</strong><span>ideas</span></li>
             </ul>
           </div>
 
@@ -67,18 +71,18 @@
         <section class="feature-grid">
           <article class="feature-card">
             <div class="icon purple">✦</div>
-            <h3>Project Editor</h3>
-            <p>Build scripts with blocks, remix ideas, and test live interactions without leaving the canvas.</p>
+            <h3>Block Editor</h3>
+            <p>stack blocks, remix logic, and create playful interactions with a familiar coding flow.</p>
           </article>
           <article class="feature-card">
             <div class="icon blue">◎</div>
-            <h3>Sprite Studio</h3>
-            <p>Spin up characters, position them on stage, and manage motion, talk bubbles, and costumes.</p>
+            <h3>Sprite Forge</h3>
+            <p>shape custom characters, tune their poses, and build scenes with lively visual motion.</p>
           </article>
           <article class="feature-card">
             <div class="icon orange">▣</div>
             <h3>Costume Lab</h3>
-            <p>Switch designs, generate color variants, and make every character feel like a star.</p>
+            <p>switch outfits, explore variations, and create standout designs for every character.</p>
           </article>
         </section>
 
@@ -97,13 +101,19 @@
           <div class="studio-layout">
             <aside class="panel left-panel">
               <div class="panel-block">
-                <h4>Sprites</h4>
+                <div class="panel-title-row">
+                  <h4>Sprites</h4>
+                  <span class="tiny-counter">2</span>
+                </div>
                 <div id="spriteList" class="sprite-list"></div>
                 <button class="tiny-btn" id="addSpriteBtn">+ Add sprite</button>
               </div>
 
               <div class="panel-block">
-                <h4>Costumes</h4>
+                <div class="panel-title-row">
+                  <h4>Costumes</h4>
+                  <span class="tiny-counter">3</span>
+                </div>
                 <div id="costumeList" class="costume-list"></div>
                 <button class="tiny-btn" id="addCostumeBtn">+ Add costume</button>
               </div>
@@ -123,7 +133,7 @@
 
               <div class="script-panel">
                 <div class="script-header">
-                  <h4>Script</h4>
+                  <h4>Code</h4>
                   <button class="tiny-btn" id="clearScriptBtn">Clear</button>
                 </div>
                 <div id="scriptList" class="script-list"></div>
@@ -131,7 +141,7 @@
             </div>
 
             <aside class="panel right-panel">
-              <div class="panel-block">
+              <div class="panel-block palette-block">
                 <h4>Block palette</h4>
                 <div class="block-palette">
                   <button class="block-btn motion" data-block="move">Move 10</button>
@@ -144,7 +154,7 @@
               </div>
 
               <div class="panel-block">
-                <h4>Inspector</h4>
+                <h4>Properties</h4>
                 <div id="inspector" class="inspector">
                   <p>Select a sprite to inspect properties.</p>
                 </div>

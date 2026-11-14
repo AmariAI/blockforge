@@ -6,12 +6,12 @@ const state = {
       id: 1,
       name: "Cat",
       x: 50,
-      y: 45,
+      y: 48,
       color: "linear-gradient(135deg, #7f6bff, #59d0ff)",
       costumes: [
         { name: "Default", tint: "linear-gradient(135deg, #7f6bff, #59d0ff)" },
         { name: "Jump", tint: "linear-gradient(135deg, #7df0b9, #59d0ff)" },
-        { name: "Spark", tint: "linear-gradient(135deg, #ffd76a, #ff8c73)" }
+        { name: "Spark", tint: "linear-gradient(135deg, #ffd76a, #ff8f7a)" }
       ],
       activeCostume: 0,
       message: "Let's build!",
@@ -20,12 +20,12 @@ const state = {
     {
       id: 2,
       name: "Bot",
-      x: 28,
+      x: 26,
       y: 62,
       color: "linear-gradient(135deg, #ffad7a, #ff6b8d)",
       costumes: [
         { name: "Idle", tint: "linear-gradient(135deg, #ffad7a, #ff6b8d)" },
-        { name: "Wave", tint: "linear-gradient(135deg, #ffde59, #ffb84d)" },
+        { name: "Wave", tint: "linear-gradient(135deg, #ffde59, #ffbb6d)" },
         { name: "Bolt", tint: "linear-gradient(135deg, #8af7b5, #19d3d1)" }
       ],
       activeCostume: 0,
@@ -60,14 +60,14 @@ function renderSpriteList() {
   spriteList.innerHTML = "";
   state.sprites.forEach((sprite, index) => {
     const item = document.createElement("button");
-    item.className = `sprite-item ${index === state.activeSpriteIndex ? "active" : ""}`;
     item.type = "button";
+    item.className = `sprite-item ${index === state.activeSpriteIndex ? "active" : ""}`;
     item.innerHTML = `
       <div class="sprite-meta">
         <span class="sprite-thumb" style="background: ${sprite.color};"></span>
         <span>${sprite.name}</span>
       </div>
-      <span>${sprite.script.length} blocks</span>
+      <span>${sprite.script.length}</span>
     `;
     item.addEventListener("click", () => {
       state.activeSpriteIndex = index;
@@ -128,21 +128,17 @@ function renderInspector() {
 }
 
 function renderStage() {
-  const sprite = getActiveSprite();
-  const existing = spriteLayer.querySelectorAll(".stage-sprite");
-  existing.forEach((node) => node.remove());
-
   stageTitle.textContent = state.projectName;
+  spriteLayer.innerHTML = "";
 
-  state.sprites.forEach((item, index) => {
+  state.sprites.forEach((sprite, index) => {
     const el = document.createElement("div");
     el.className = "stage-sprite";
-    el.dataset.name = item.name;
-    el.style.left = `${item.x}%`;
-    el.style.top = `${item.y}%`;
-    el.style.background = item.costumes[item.activeCostume].tint;
+    el.style.left = `${sprite.x}%`;
+    el.style.top = `${sprite.y}%`;
+    el.style.background = sprite.costumes[sprite.activeCostume].tint;
     el.style.transform = `translate(-50%, -50%) scale(${index === state.activeSpriteIndex ? 1.08 : 1})`;
-    el.title = `${item.name}`;
+    el.title = sprite.name;
     el.addEventListener("click", () => {
       state.activeSpriteIndex = index;
       renderAll();
@@ -161,20 +157,21 @@ function renderAll() {
 
 function addSprite() {
   const count = state.sprites.length + 1;
-  const spriteName = `Sprite ${count}`;
+  const name = `Sprite ${count}`;
   const newSprite = {
     id: Date.now(),
-    name: spriteName,
-    x: 50 + Math.random() * 20 - 10,
-    y: 50 + Math.random() * 20 - 10,
-    color: `linear-gradient(135deg, hsl(${Math.random() * 360}deg 90% 68%), hsl(${Math.random() * 180 + 180}deg 90% 65%))`,
+    name,
+    x: 50 + (Math.random() * 18 - 9),
+    y: 50 + (Math.random() * 18 - 9),
+    color: `linear-gradient(135deg, hsl(${Math.random() * 360}deg 82% 66%), hsl(${Math.random() * 180 + 180}deg 80% 66%))`,
     costumes: [
-      { name: "Base", tint: `linear-gradient(135deg, hsl(${Math.random() * 360}deg 90% 65%), hsl(${Math.random() * 360}deg 90% 68%))` }
+      { name: "Base", tint: `linear-gradient(135deg, hsl(${Math.random() * 360}deg 80% 66%), hsl(${Math.random() * 200}deg 82% 68%))` }
     ],
     activeCostume: 0,
     message: "Fresh start!",
     script: ["whenGreenFlag", "move", "say"]
   };
+
   state.sprites.push(newSprite);
   state.activeSpriteIndex = state.sprites.length - 1;
   renderAll();
@@ -182,12 +179,11 @@ function addSprite() {
 
 function addCostume() {
   const sprite = getActiveSprite();
-  const colorHue = Math.random() * 360;
-  const costume = {
+  const h = Math.random() * 360;
+  sprite.costumes.push({
     name: `Style ${sprite.costumes.length + 1}`,
-    tint: `linear-gradient(135deg, hsl(${colorHue}deg 90% 68%), hsl(${(colorHue + 50) % 360}deg 90% 66%))`
-  };
-  sprite.costumes.push(costume);
+    tint: `linear-gradient(135deg, hsl(${h}deg 82% 68%), hsl(${(h + 60) % 360}deg 84% 67%))`
+  });
   sprite.activeCostume = sprite.costumes.length - 1;
   renderAll();
 }
@@ -196,18 +192,17 @@ function addBlock(blockName) {
   const sprite = getActiveSprite();
   sprite.script.push(blockName);
   renderScriptList();
-  renderInspector();
 }
 
 function clearScript() {
-  const sprite = getActiveSprite();
-  sprite.script = [];
+  getActiveSprite().script = [];
   renderScriptList();
 }
 
 function runScript() {
   const sprite = getActiveSprite();
   let step = 0;
+
   const interval = setInterval(() => {
     if (step >= sprite.script.length) {
       clearInterval(interval);
@@ -215,15 +210,14 @@ function runScript() {
     }
 
     const blockName = sprite.script[step];
-    const block = blockMap[blockName];
 
     switch (blockName) {
       case "move":
-        sprite.x = Math.min(85, Math.max(10, sprite.x + 12));
+        sprite.x = Math.min(85, Math.max(10, sprite.x + 10));
         break;
       case "turn":
         sprite.x = Math.min(90, Math.max(8, sprite.x + 8));
-        sprite.y = Math.min(82, Math.max(18, sprite.y + 7));
+        sprite.y = Math.min(82, Math.max(18, sprite.y + 6));
         break;
       case "say":
         sprite.message = "Hello, creator!";
@@ -252,15 +246,9 @@ function bindEvents() {
     document.getElementById("studio").scrollIntoView({ behavior: "smooth" });
   });
 
-  document.getElementById("viewDemoBtn").addEventListener("click", () => {
-    runScript();
-  });
-
+  document.getElementById("viewDemoBtn").addEventListener("click", runScript);
   document.getElementById("greenFlagBtn").addEventListener("click", runScript);
-  document.getElementById("stopBtn").addEventListener("click", () => {
-    window.location.reload();
-  });
-
+  document.getElementById("stopBtn").addEventListener("click", () => window.location.reload());
   document.getElementById("addSpriteBtn").addEventListener("click", addSprite);
   document.getElementById("addCostumeBtn").addEventListener("click", addCostume);
   document.getElementById("clearScriptBtn").addEventListener("click", clearScript);
