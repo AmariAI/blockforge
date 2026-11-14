@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlockForge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-wrap">
+          <div class="brand-mark">B</div>
+          <div>
+            <p class="eyebrow">Creative coding studio</p>
+            <h1>BlockForge</h1>
+          </div>
+        </div>
+
+        <nav class="topnav">
+          <a href="#studio">Studio</a>
+          <a href="#features">Features</a>
+          <a href="#community">Community</a>
+        </nav>
+
+        <button class="primary-btn" id="launchBuilder">Launch Builder</button>
+      </header>
+
+      <main>
+        <section class="hero" id="features">
+          <div class="hero-copy">
+            <span class="badge">New world • Build • Play</span>
+            <h2>Turn ideas into playful worlds.</h2>
+            <p>
+              Craft stories, games, animations, and interactive art with drag-and-drop blocks,
+              live sprite tools, and a costume lab built for curious creators.
+            </p>
+            <div class="hero-actions">
+              <button class="primary-btn" id="startProjectBtn">Start a project</button>
+              <button class="ghost-btn" id="viewDemoBtn">View demo</button>
+            </div>
+            <ul class="hero-metrics">
+              <li><strong>80+</strong><span>sprite styles</span></li>
+              <li><strong>3x</strong><span>faster prototyping</span></li>
+              <li><strong>∞</strong><span>creative loops</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-card">
+            <div class="mini-stage">
+              <div class="sun"></div>
+              <div class="cloud cloud-one"></div>
+              <div class="cloud cloud-two"></div>
+              <div class="sprite sprite-glow" id="heroSprite"></div>
+            </div>
+            <div class="mini-toolbar">
+              <span class="toolbar-pill motion">Move</span>
+              <span class="toolbar-pill looks">Looks</span>
+              <span class="toolbar-pill sound">Sound</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="feature-grid">
+          <article class="feature-card">
+            <div class="icon purple">✦</div>
+            <h3>Project Editor</h3>
+            <p>Build scripts with blocks, remix ideas, and test live interactions without leaving the canvas.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon blue">◎</div>
+            <h3>Sprite Studio</h3>
+            <p>Spin up characters, position them on stage, and manage motion, talk bubbles, and costumes.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon orange">▣</div>
+            <h3>Costume Lab</h3>
+            <p>Switch designs, generate color variants, and make every character feel like a star.</p>
+          </article>
+        </section>
+
+        <section class="studio" id="studio">
+          <div class="studio-header">
+            <div>
+              <p class="eyebrow">Project workspace</p>
+              <h3>Creator studio</h3>
+            </div>
+            <div class="project-controls">
+              <button class="small-btn" id="greenFlagBtn">Green flag</button>
+              <button class="small-btn ghost" id="stopBtn">Stop</button>
+            </div>
+          </div>
+
+          <div class="studio-layout">
+            <aside class="panel left-panel">
+              <div class="panel-block">
+                <h4>Sprites</h4>
+                <div id="spriteList" class="sprite-list"></div>
+                <button class="tiny-btn" id="addSpriteBtn">+ Add sprite</button>
+              </div>
+
+              <div class="panel-block">
+                <h4>Costumes</h4>
+                <div id="costumeList" class="costume-list"></div>
+                <button class="tiny-btn" id="addCostumeBtn">+ Add costume</button>
+              </div>
+            </aside>
+
+            <div class="center-panel">
+              <div class="stage-wrap">
+                <div class="stage-header">
+                  <span>Stage</span>
+                  <span id="stageTitle">Moon Hopper</span>
+                </div>
+                <div id="stage" class="stage" aria-label="Project stage">
+                  <div class="stage-sky"></div>
+                  <div id="spriteLayer" class="sprite-layer"></div>
+                </div>
+              </div>
+
+              <div class="script-panel">
+                <div class="script-header">
+                  <h4>Script</h4>
+                  <button class="tiny-btn" id="clearScriptBtn">Clear</button>
+                </div>
+                <div id="scriptList" class="script-list"></div>
+              </div>
+            </div>
+
+            <aside class="panel right-panel">
+              <div class="panel-block">
+                <h4>Block palette</h4>
+                <div class="block-palette">
+                  <button class="block-btn motion" data-block="move">Move 10</button>
+                  <button class="block-btn motion" data-block="turn">Turn 15°</button>
+                  <button class="block-btn looks" data-block="say">Say hello</button>
+                  <button class="block-btn looks" data-block="switchCostume">Switch costume</button>
+                  <button class="block-btn event" data-block="whenGreenFlag">When green flag clicked</button>
+                  <button class="block-btn sound" data-block="playSound">Play sound</button>
+                </div>
+              </div>
+
+              <div class="panel-block">
+                <h4>Inspector</h4>
+                <div id="inspector" class="inspector">
+                  <p>Select a sprite to inspect properties.</p>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
